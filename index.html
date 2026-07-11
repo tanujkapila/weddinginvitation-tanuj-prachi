@@ -12,22 +12,25 @@
 
 <style>
   :root{
-    --ivory:#F7F2E8;
-    --ivory-2:#EEE6D6;
-    --paper:#FCFAF5;
-    --olive:#61714A;
-    --olive-2:#3E482D;
-    --olive-3:#7D8E63;
-    --gold:#B89557;
-    --gold-2:#DCC98E;
-    --ink:#26241C;
-    --muted:#5C5848;
-    --line:rgba(184,149,87,.35);
-    --shadow:0 24px 60px rgba(24,20,10,.16);
+    --paper:#FAF5EA;
+    --paper-2:#F3EBDD;
+    --ivory:#FFFDF8;
+    --olive:#5A6842;
+    --olive-2:#384428;
+    --olive-3:#7A8A5A;
+    --gold:#A88747;
+    --gold-2:#D8C391;
+    --gold-3:#E9D9B0;
+    --maroon:#5D2430;
+    --maroon-2:#7A3140;
+    --ink:#252118;
+    --muted:#5A5647;
+    --line:rgba(168,135,71,.28);
+    --shadow:0 26px 70px rgba(24,18,10,.16);
     --serif:'Cormorant Garamond', serif;
     --serif-sc:'Cormorant SC', serif;
     --sans:'Jost', sans-serif;
-    --max:1240px;
+    --max:1280px;
     --ease:cubic-bezier(.65,0,.35,1);
   }
 
@@ -35,7 +38,7 @@
   html{scroll-behavior:smooth}
   body{
     margin:0;
-    background:var(--ivory);
+    background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
     overflow-x:hidden;
@@ -44,19 +47,9 @@
   img,svg{max-width:100%;display:block}
   a{color:inherit}
   h1,h2,h3,h4,p{margin:0}
-  h1,h2,h3,h4{
-    font-family:var(--serif);
-    font-weight:500;
-    letter-spacing:.01em;
-  }
-  p{
-    line-height:1.8;
-    color:var(--muted);
-  }
-  .wrap{
-    width:min(var(--max), calc(100% - 48px));
-    margin:0 auto;
-  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:.01em}
+  p{line-height:1.85;color:var(--muted)}
+  .wrap{width:min(var(--max), calc(100% - 48px)); margin:0 auto}
   .eyebrow{
     font-family:var(--sans);
     text-transform:uppercase;
@@ -74,7 +67,7 @@
     text-decoration:none;
     border:1px solid var(--olive-2);
     background:var(--olive-2);
-    color:var(--paper);
+    color:var(--ivory);
     font-size:.72rem;
     letter-spacing:.16em;
     text-transform:uppercase;
@@ -84,7 +77,7 @@
   }
   .btn:hover{transform:translateY(-2px);background:var(--olive);border-color:var(--olive)}
   .btn--ghost{background:transparent;color:var(--olive-2)}
-  .btn--ghost:hover{background:var(--olive-2);color:var(--paper)}
+  .btn--ghost:hover{background:var(--olive-2);color:var(--ivory)}
   .chip{
     display:inline-flex;
     align-items:center;
@@ -92,22 +85,19 @@
     padding:10px 14px;
     border:1px solid var(--line);
     border-radius:999px;
-    background:rgba(255,255,255,.45);
+    background:rgba(255,255,255,.5);
     color:var(--muted);
     font-size:.8rem;
+    backdrop-filter:blur(10px);
   }
-  .section{
-    padding:120px 0;
-    position:relative;
-  }
-  .section--tight{padding:96px 0}
+  .section{padding:120px 0;position:relative}
   .section-head{
     text-align:center;
     max-width:760px;
-    margin:0 auto 56px;
+    margin:0 auto 58px;
   }
   .section-head h2{
-    font-size:clamp(2.1rem,4.8vw,3.6rem);
+    font-size:clamp(2.2rem,5vw,3.8rem);
     color:var(--olive-2);
     margin-top:14px;
   }
@@ -115,24 +105,22 @@
   .reveal{
     opacity:0;
     transform:translateY(24px);
-    transition:opacity .9s ease, transform .9s ease;
+    transition:opacity .95s ease, transform .95s ease;
   }
-  .reveal.is-visible{
-    opacity:1;
-    transform:translateY(0);
-  }
+  .reveal.is-visible{opacity:1;transform:translateY(0)}
   .motif{
     position:absolute;
     pointer-events:none;
     opacity:.08;
     color:var(--olive-2);
   }
-  .motif--spin{animation:spin 90s linear infinite}
+  .motif--spin{animation:spin 96s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
   }
 
+  /* Gate */
   .gate{
     position:fixed;
     inset:0;
@@ -140,58 +128,59 @@
     display:grid;
     place-items:center;
     transition:opacity .9s ease, visibility .9s ease;
-  }
-  .gate.is-entered{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-  }
-  .gate__overlay{
-    position:absolute;
-    inset:0;
     background:
-      radial-gradient(circle at 50% 15%, rgba(255,255,255,.08), transparent 30%),
-      linear-gradient(165deg, rgba(32,38,24,.97), rgba(15,18,11,.99) 72%);
+      radial-gradient(circle at 50% 20%, rgba(255,255,255,.05), transparent 30%),
+      linear-gradient(165deg, rgba(39,45,25,.98), rgba(18,22,11,.99));
+  }
+  .gate.is-entered{opacity:0;visibility:hidden;pointer-events:none}
+  .gate__overlay{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(168,135,71,.12), transparent 24%),
+      radial-gradient(circle at 50% 55%, rgba(121,57,71,.08), transparent 30%);
     transition:opacity 1.2s var(--ease);
   }
   .gate.is-open .gate__overlay{opacity:0}
   .gate__wrap{
     position:relative;
     z-index:2;
+    width:min(96vw, 1000px);
     text-align:center;
-    width:min(92vw, 520px);
+    padding:24px 0;
   }
   .gate__title{
     font-family:var(--serif);
     font-style:italic;
-    color:var(--gold-2);
-    font-size:1.15rem;
-    margin-bottom:20px;
+    color:var(--gold-3);
+    font-size:1.2rem;
+    margin-bottom:18px;
+    letter-spacing:.02em;
   }
   .gate__hint{
     margin-top:26px;
-    color:rgba(220,201,142,.82);
+    color:rgba(233,217,176,.84);
     font-size:.66rem;
-    letter-spacing:.28em;
+    letter-spacing:.32em;
     text-transform:uppercase;
   }
   .gate__skip{
     display:inline-block;
     margin-top:20px;
-    color:rgba(220,201,142,.72);
+    color:rgba(233,217,176,.78);
     text-decoration:none;
     font-size:.68rem;
-    letter-spacing:.16em;
+    letter-spacing:.18em;
     text-transform:uppercase;
-    border-bottom:1px solid rgba(220,201,142,.4);
+    border-bottom:1px solid rgba(233,217,176,.38);
     padding-bottom:3px;
   }
+
   .door-scene{
     position:relative;
-    width:min(720px, 92vw);
-    height:min(820px, 82vh);
+    width:min(1000px, 96vw);
+    height:min(92vh, 980px);
     margin:0 auto;
-    perspective:2400px;
+    perspective:2600px;
   }
   .door{
     position:absolute;
@@ -199,61 +188,66 @@
     width:50%;
     height:100%;
     background:
-      radial-gradient(circle at 50% 20%, rgba(255,255,255,.3), transparent 25%),
-      linear-gradient(180deg, #FCF8EF, #F0E4CB);
-    border:1px solid var(--gold);
-    box-shadow:var(--shadow);
+      radial-gradient(circle at 50% 18%, rgba(255,255,255,.34), transparent 22%),
+      linear-gradient(180deg, #FFF9EE 0%, #F1E5CB 100%);
+    border:1px solid rgba(168,135,71,.72);
+    box-shadow:0 24px 70px rgba(0,0,0,.34);
     overflow:hidden;
     display:flex;
     align-items:center;
+    justify-content:center;
   }
   .door::before{
     content:"";
     position:absolute;
     inset:0;
     background:
-      linear-gradient(90deg, rgba(184,149,87,.09), transparent 20%, rgba(184,149,87,.07) 50%, transparent 80%),
-      repeating-linear-gradient(90deg, rgba(145,110,55,.05) 0 2px, transparent 2px 28px);
-    opacity:.7;
+      linear-gradient(90deg, rgba(168,135,71,.08), transparent 18%, rgba(168,135,71,.06) 50%, transparent 82%),
+      repeating-linear-gradient(90deg, rgba(92,104,66,.04) 0 2px, transparent 2px 34px),
+      repeating-linear-gradient(0deg, rgba(92,104,66,.03) 0 2px, transparent 2px 34px);
+    opacity:.9;
+  }
+  .door::after{
+    content:"";
+    position:absolute;
+    inset:22px;
+    border:1px solid rgba(168,135,71,.16);
+    pointer-events:none;
   }
   .door--left{
     left:0;
-    border-radius:10px 0 0 10px;
+    border-radius:12px 0 0 12px;
     border-right:none;
-    justify-content:flex-end;
     transform-origin:left center;
-    padding:40px 28px 40px 18px;
   }
   .door--right{
     right:0;
-    border-radius:0 10px 10px 0;
+    border-radius:0 12px 12px 0;
     border-left:none;
-    justify-content:flex-start;
     transform-origin:right center;
-    padding:40px 18px 40px 28px;
   }
-  .gate.is-open .door--left{transform:rotateY(-118deg)}
-  .gate.is-open .door--right{transform:rotateY(118deg)}
+  .gate.is-open .door--left{transform:rotateY(-124deg)}
+  .gate.is-open .door--right{transform:rotateY(124deg)}
+
   .door__content{
     position:relative;
     z-index:2;
-    max-width:220px;
+    width:min(78%, 280px);
+    text-align:center;
   }
-  .door--left .door__content{text-align:right}
-  .door--right .door__content{text-align:left}
   .door__eyebrow{
     display:block;
     font-size:.58rem;
-    letter-spacing:.22em;
+    letter-spacing:.24em;
     text-transform:uppercase;
     color:var(--olive-2);
-    margin-bottom:10px;
+    margin-bottom:12px;
   }
   .door__name{
     display:block;
     font-family:var(--serif);
     font-style:italic;
-    font-size:clamp(1.9rem,6vw,3rem);
+    font-size:clamp(2rem,6vw,3.25rem);
     line-height:1.02;
     color:var(--olive-2);
   }
@@ -262,7 +256,7 @@
     margin-top:14px;
     font-size:.62rem;
     text-transform:uppercase;
-    letter-spacing:.18em;
+    letter-spacing:.2em;
     color:var(--gold);
   }
   .seal{
@@ -270,17 +264,18 @@
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
-    width:94px;
-    height:94px;
+    width:104px;
+    height:104px;
     border:none;
     border-radius:58% 42% 56% 44% / 45% 56% 44% 55%;
-    background:radial-gradient(circle at 35% 30%, #D2BA7F, var(--gold) 45%, #7A6337 100%);
+    background:
+      radial-gradient(circle at 35% 30%, #E1CD99, var(--gold) 45%, #6F5627 100%);
     color:var(--olive-2);
     font-family:var(--serif-sc);
-    font-size:1.3rem;
+    font-size:1.4rem;
     display:grid;
     place-items:center;
-    box-shadow:0 10px 24px rgba(0,0,0,.45), inset 0 2px 5px rgba(255,255,255,.3);
+    box-shadow:0 14px 28px rgba(0,0,0,.46), inset 0 2px 6px rgba(255,255,255,.32);
     cursor:pointer;
     z-index:4;
     animation:pulse 2.6s ease-in-out infinite;
@@ -295,6 +290,7 @@
     transform:translate(-50%,-50%) scale(.35) rotate(35deg);
   }
 
+  /* Hero */
   .hero{
     min-height:100vh;
     display:grid;
@@ -304,14 +300,23 @@
     position:relative;
     overflow:hidden;
     background:
-      radial-gradient(circle at 50% 10%, rgba(184,149,87,.14), transparent 28%),
-      radial-gradient(circle at 8% 90%, rgba(97,113,74,.14), transparent 28%),
-      linear-gradient(180deg, #FBF8F1, #F5EEDF);
+      radial-gradient(circle at 50% 12%, rgba(168,135,71,.12), transparent 26%),
+      radial-gradient(circle at 12% 88%, rgba(93,36,48,.12), transparent 26%),
+      linear-gradient(180deg, #FCF7EE, #F4E8D4);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 50% 8%, rgba(255,255,255,.6), transparent 24%),
+      radial-gradient(circle at 20% 25%, rgba(255,255,255,.18), transparent 18%),
+      radial-gradient(circle at 80% 28%, rgba(255,255,255,.12), transparent 18%);
+    opacity:.7;
   }
   .hero__inner{
     position:relative;
     z-index:2;
-    width:min(980px, calc(100% - 48px));
+    width:min(1040px, calc(100% - 48px));
     margin:0 auto;
   }
   .hero__top{
@@ -322,17 +327,17 @@
     margin-bottom:22px;
   }
   .hero__title{
-    font-size:clamp(3.3rem, 9vw, 7.6rem);
-    line-height:.92;
+    font-size:clamp(3.7rem, 10vw, 8.4rem);
+    line-height:.9;
     color:var(--olive-2);
     letter-spacing:.01em;
   }
   .hero__amp{color:var(--gold);font-style:italic}
   .hero__subtitle{
     margin-top:22px;
-    font-size:clamp(1.05rem,1.9vw,1.3rem);
+    font-size:clamp(1.05rem,2vw,1.32rem);
     color:var(--muted);
-    max-width:760px;
+    max-width:820px;
     margin-left:auto;
     margin-right:auto;
   }
@@ -365,37 +370,53 @@
     50%{opacity:1}
   }
 
-  .intro{background:var(--paper);overflow:hidden}
+  .intro{
+    background:var(--ivory);
+    overflow:hidden;
+  }
   .intro__grid{
     display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:34px;
+    grid-template-columns:1.08fr .92fr;
+    gap:36px;
     align-items:center;
   }
-  .intro__copy{padding:26px 0}
+  .intro__copy{
+    padding:26px 0;
+  }
   .intro__copy h2{
-    font-size:clamp(2rem,4.8vw,3.5rem);
+    font-size:clamp(2rem,4.8vw,3.7rem);
     color:var(--olive-2);
     margin-top:14px;
   }
-  .intro__copy p{margin-top:18px;font-size:1.05rem}
+  .intro__copy p{margin-top:18px;font-size:1.06rem}
   .intro__panel{
-    background:linear-gradient(145deg, rgba(255,255,255,.86), rgba(237,230,214,.9));
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.88), rgba(243,235,221,.92));
     border:1px solid var(--line);
     padding:34px;
     box-shadow:var(--shadow);
     position:relative;
-    border-radius:4px;
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .intro__panel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 80% 10%, rgba(168,135,71,.12), transparent 22%),
+      radial-gradient(circle at 20% 86%, rgba(93,36,48,.08), transparent 18%);
+    pointer-events:none;
   }
   .intro__panel::after{
     content:"";
     position:absolute;
     inset:14px;
-    border:1px solid rgba(184,149,87,.15);
+    border:1px solid rgba(168,135,71,.16);
     pointer-events:none;
   }
   .intro__big{
-    font-size:clamp(2.1rem,5vw,3rem);
+    font-size:clamp(2.1rem,5vw,3.2rem);
     color:var(--olive-2);
     line-height:1.05;
   }
@@ -406,11 +427,10 @@
 
   .countdown{
     background:var(--olive-2);
-    color:var(--paper);
-    overflow:hidden;
+    color:var(--ivory);
   }
   .countdown .section-head h2,
-  .countdown .section-head p{color:var(--paper)}
+  .countdown .section-head p{color:var(--ivory)}
   .countdown .section-head p{opacity:.76}
   .countdown__grid{
     display:grid;
@@ -420,16 +440,16 @@
     z-index:2;
   }
   .countdown__cell{
-    border:1px solid rgba(220,201,142,.25);
-    background:rgba(255,255,255,.05);
+    border:1px solid rgba(233,217,176,.25);
+    background:rgba(255,255,255,.06);
     text-align:center;
     padding:28px 10px;
-    border-radius:4px;
+    border-radius:6px;
   }
   .countdown__num{
     display:block;
     font-size:clamp(2.4rem,6vw,4rem);
-    color:var(--gold-2);
+    color:var(--gold-3);
     line-height:1;
     font-family:var(--serif);
   }
@@ -439,10 +459,12 @@
     text-transform:uppercase;
     letter-spacing:.2em;
     font-size:.68rem;
-    color:rgba(247,242,232,.72);
+    color:rgba(250,245,234,.72);
   }
 
-  .story{background:linear-gradient(180deg, #F9F4EA, #EFE6D2)}
+  .story{
+    background:linear-gradient(180deg, #FCF6EB, #F2E6D3);
+  }
   .story__timeline{
     max-width:960px;
     margin:0 auto;
@@ -470,7 +492,7 @@
     width:80px;
     height:80px;
     border-radius:50%;
-    background:var(--paper);
+    background:var(--ivory);
     border:1px solid var(--gold);
     display:grid;
     place-items:center;
@@ -480,14 +502,14 @@
     box-shadow:0 12px 24px rgba(40,30,12,.08);
   }
   .story__card{
-    background:rgba(255,255,255,.6);
+    background:rgba(255,255,255,.62);
     border:1px solid var(--line);
     box-shadow:var(--shadow);
     padding:30px;
-    border-radius:4px;
+    border-radius:6px;
   }
   .story__card h3{
-    font-size:clamp(1.6rem,3vw,2.4rem);
+    font-size:clamp(1.6rem,3vw,2.5rem);
     color:var(--olive-2);
     margin-top:10px;
   }
@@ -501,18 +523,20 @@
     font-size:.92rem;
   }
 
-  .events{background:var(--ivory)}
+  .events{
+    background:var(--paper);
+  }
   .events__grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:22px;
   }
   .event{
-    background:var(--paper);
+    background:var(--ivory);
     border:1px solid var(--line);
     box-shadow:var(--shadow);
     padding:30px;
-    border-radius:6px;
+    border-radius:8px;
     position:relative;
     overflow:hidden;
   }
@@ -521,8 +545,8 @@
     position:absolute;
     inset:0;
     background:
-      radial-gradient(circle at 85% 10%, rgba(184,149,87,.1), transparent 25%),
-      linear-gradient(145deg, rgba(255,255,255,.6), transparent 60%);
+      radial-gradient(circle at 85% 10%, rgba(168,135,71,.1), transparent 25%),
+      radial-gradient(circle at 20% 80%, rgba(93,36,48,.06), transparent 22%);
     pointer-events:none;
   }
   .event__day{
@@ -536,7 +560,7 @@
   .event h3{
     position:relative;
     z-index:1;
-    font-size:clamp(1.7rem,3vw,2.5rem);
+    font-size:clamp(1.8rem,3vw,2.6rem);
     color:var(--olive-2);
     margin-top:10px;
   }
@@ -547,7 +571,7 @@
     display:grid;
     gap:10px;
     color:var(--muted);
-    font-size:.95rem;
+    font-size:.96rem;
   }
   .event__details strong{color:var(--ink)}
   .event__actions{
@@ -559,18 +583,20 @@
     flex-wrap:wrap;
   }
 
-  .travel{background:linear-gradient(180deg, #F1E8D7, #E8DDC6)}
+  .travel{
+    background:linear-gradient(180deg, #F4E9D7, #EAE0CC);
+  }
   .travel__grid{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));
     gap:18px;
   }
   .info-card{
-    background:rgba(255,255,255,.58);
+    background:rgba(255,255,255,.62);
     border:1px solid var(--line);
     box-shadow:var(--shadow);
     padding:26px;
-    border-radius:6px;
+    border-radius:8px;
   }
   .info-card h3{
     color:var(--olive-2);
@@ -600,7 +626,9 @@
     top:.6em;
   }
 
-  .gallery{background:var(--paper)}
+  .gallery{
+    background:var(--ivory);
+  }
   .gallery__grid{
     display:grid;
     grid-template-columns:repeat(12,1fr);
@@ -608,9 +636,11 @@
   }
   .gallery__item{
     min-height:180px;
-    border-radius:6px;
+    border-radius:8px;
     border:1px solid var(--line);
-    background:linear-gradient(145deg, #EADFC7, #F8F4EC);
+    background:
+      radial-gradient(circle at 20% 20%, rgba(168,135,71,.12), transparent 22%),
+      linear-gradient(145deg, #EFE3CB, #FBF6EC);
     display:grid;
     place-items:center;
     text-align:center;
@@ -621,13 +651,38 @@
     box-shadow:var(--shadow);
   }
   .gallery__item:nth-child(1){grid-column:span 5;min-height:260px}
-  .gallery__item:nth-child(2){grid-column:span 7;min-height:260px;background:linear-gradient(145deg,#E8E0CF,#D8E0C8)}
+  .gallery__item:nth-child(2){grid-column:span 7;min-height:260px;background:linear-gradient(145deg,#E8E0CF,#D7DDC4)}
   .gallery__item:nth-child(3){grid-column:span 4}
-  .gallery__item:nth-child(4){grid-column:span 4;background:linear-gradient(145deg,#E5DAC1,#F7F0E2)}
-  .gallery__item:nth-child(5){grid-column:span 4;background:linear-gradient(145deg,#DDD9C5,#F8F5ED)}
-  .gallery__item:nth-child(6){grid-column:span 12;min-height:230px;background:linear-gradient(145deg,#EBDCBF,#D8E0C8)}
+  .gallery__item:nth-child(4){grid-column:span 4;background:linear-gradient(145deg,#E5DAC1,#F6EFE0)}
+  .gallery__item:nth-child(5){grid-column:span 4;background:linear-gradient(145deg,#DDD9C5,#F7F3EB)}
+  .gallery__item:nth-child(6){grid-column:span 12;min-height:240px;background:linear-gradient(145deg,#EAD9BC,#D7DDC4)}
 
-  .faq{background:linear-gradient(180deg,#F3EAD7,#E9DDC7)}
+  .blessings{
+    background:linear-gradient(180deg,#F4E8D5,#E8DAC4);
+  }
+  .blessings__panel{
+    max-width:980px;
+    margin:0 auto;
+    background:rgba(255,255,255,.62);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    padding:34px;
+    border-radius:8px;
+    text-align:center;
+  }
+  .blessings__panel h3{
+    font-size:clamp(1.9rem,3vw,2.9rem);
+    color:var(--olive-2);
+    margin-top:10px;
+  }
+  .blessings__panel p{
+    margin-top:14px;
+    font-size:1.02rem;
+  }
+
+  .faq{
+    background:linear-gradient(180deg,#F3E7D1,#E8DCC5);
+  }
   .faq__grid{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -636,11 +691,11 @@
     margin:0 auto;
   }
   .faq__item{
-    background:rgba(255,255,255,.66);
+    background:rgba(255,255,255,.68);
     border:1px solid var(--line);
     box-shadow:var(--shadow);
     padding:26px;
-    border-radius:6px;
+    border-radius:8px;
   }
   .faq__item h3{
     color:var(--olive-2);
@@ -650,11 +705,11 @@
 
   .rsvp{
     background:var(--olive-2);
-    color:var(--paper);
+    color:var(--ivory);
     overflow:hidden;
   }
   .rsvp .section-head h2,
-  .rsvp .section-head p{color:var(--paper)}
+  .rsvp .section-head p{color:var(--ivory)}
   .rsvp .section-head p{opacity:.75}
   .rsvp__layout{
     display:grid;
@@ -664,16 +719,16 @@
   }
   .rsvp__panel{
     background:rgba(255,255,255,.06);
-    border:1px solid rgba(220,201,142,.25);
+    border:1px solid rgba(233,217,176,.24);
     padding:30px;
-    border-radius:6px;
+    border-radius:8px;
   }
   .rsvp__panel h3{
-    font-size:clamp(1.8rem,3vw,2.6rem);
-    color:var(--gold-2);
+    font-size:clamp(1.8rem,3vw,2.7rem);
+    color:var(--gold-3);
     margin-top:10px;
   }
-  .rsvp__panel p{color:rgba(247,242,232,.74);margin-top:14px}
+  .rsvp__panel p{color:rgba(250,245,234,.74);margin-top:14px}
   .rsvp__form{
     display:grid;
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -689,14 +744,14 @@
     font-size:.68rem;
     letter-spacing:.16em;
     text-transform:uppercase;
-    color:var(--gold-2);
+    color:var(--gold-3);
   }
   .field input,
   .field select,
   .field textarea{
-    border:1px solid rgba(220,201,142,.28);
+    border:1px solid rgba(233,217,176,.28);
     background:rgba(255,255,255,.07);
-    color:var(--paper);
+    color:var(--ivory);
     padding:13px 14px;
     font:inherit;
     border-radius:4px;
@@ -708,7 +763,7 @@
   }
   .field input::placeholder,
   .field textarea::placeholder{
-    color:rgba(247,242,232,.35);
+    color:rgba(250,245,234,.35);
   }
   .field select option{color:var(--ink)}
   .rsvp__submit{
@@ -722,14 +777,14 @@
   .rsvp__note{
     grid-column:1/-1;
     font-size:.82rem;
-    color:rgba(247,242,232,.55);
+    color:rgba(250,245,234,.55);
   }
   .rsvp__success{
     display:none;
     grid-column:1/-1;
     padding:18px;
-    border:1px solid rgba(220,201,142,.45);
-    color:var(--gold-2);
+    border:1px solid rgba(233,217,176,.45);
+    color:var(--gold-3);
     background:rgba(255,255,255,.05);
     border-radius:4px;
     text-align:center;
@@ -738,7 +793,7 @@
   }
 
   .footer{
-    background:#ECE1CA;
+    background:#E9DDC7;
     text-align:center;
     padding:72px 24px 52px;
   }
@@ -794,8 +849,8 @@
     .story__dot{width:48px;height:48px;font-size:1rem}
     .rsvp__form{grid-template-columns:1fr}
     .hero{padding:110px 0 70px}
-    .door-scene{height:min(700px, 84vh)}
-    .door__content{max-width:150px}
+    .door-scene{height:min(86vh, 760px)}
+    .door__content{width:min(76%, 220px)}
   }
 </style>
 </head>
@@ -804,6 +859,7 @@
     <div class="gate__overlay"></div>
     <div class="gate__wrap">
       <p class="gate__title">You are cordially invited</p>
+
       <div class="door-scene">
         <div class="door door--left">
           <div class="door__content">
@@ -821,6 +877,7 @@
         </div>
         <button class="seal" id="seal" type="button" aria-label="Open invitation">T&amp;P</button>
       </div>
+
       <p class="gate__hint">Tap the seal to open</p>
       <a class="gate__skip" id="skipGate" href="#hero">Enter without animation</a>
     </div>
@@ -828,7 +885,7 @@
 
   <main>
     <header class="hero" id="hero">
-      <svg class="motif motif--spin" width="720" height="720" viewBox="0 0 200 200" style="top:-10%;left:50%;transform:translateX(-50%);" aria-hidden="true">
+      <svg class="motif motif--spin" width="760" height="760" viewBox="0 0 200 200" style="top:-12%;left:50%;transform:translateX(-50%);" aria-hidden="true">
         <g fill="none" stroke="currentColor" stroke-width="0.5">
           <circle cx="100" cy="100" r="90"/>
           <circle cx="100" cy="100" r="72"/>
@@ -857,8 +914,7 @@
         <p class="eyebrow reveal">Together with their families</p>
         <h1 class="hero__title reveal">Tanuj <span class="hero__amp">&amp;</span> Prachi</h1>
         <p class="hero__subtitle reveal">
-          A grand invitation to celebrate the engagement and wedding of Tanuj and Prachi —
-          two days of tradition, joy, music, and unforgettable memories.
+          A heritage wedding invitation inspired by Indian elegance — designed to feel grand, warm, ceremonial, and easy for guests to use.
         </p>
 
         <div class="hero__meta reveal">
@@ -881,24 +937,22 @@
         <div class="intro__grid">
           <div class="intro__copy reveal">
             <p class="eyebrow">The invitation</p>
-            <h2>An evening that opens like a story</h2>
+            <h2>Royal, immersive, and rooted in Indian heritage</h2>
             <p>
-              This wedding invitation is designed to feel expansive, elegant, and ceremonial —
-              beginning with a full-screen door reveal and flowing into a rich, immersive site
-              experience for your guests.
+              This design is meant to feel like a premium wedding invitation for real guests: full-screen opening,
+              elegant motion, rich ornament, and clear event details.
             </p>
             <p>
-              The layout gives every important detail room to breathe: the couple, the dates,
-              the venues, the story, the travel info, and the RSVP.
+              It brings together tradition and usability so the invitation feels beautiful while still answering the questions
+              guests actually need answered.
             </p>
           </div>
 
           <aside class="intro__panel reveal">
             <p class="eyebrow">At a glance</p>
-            <div class="intro__big">Two days.<br>Two celebrations.<br>One beautiful beginning.</div>
+            <div class="intro__big">Two celebrations.<br>One sacred beginning.<br>Designed to feel grand.</div>
             <p class="intro__small">
-              A premium digital invitation works best when it feels generous, simple, and easy to navigate.
-              This version gives you that larger, more cinematic feel.
+              The opening is now edge-to-edge, with a stronger Indian visual language and a more ceremonial reveal.
             </p>
           </aside>
         </div>
@@ -908,7 +962,7 @@
     <section class="section countdown">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow" style="color:var(--gold-2)">Save the date</p>
+          <p class="eyebrow" style="color:var(--gold-3)">Save the date</p>
           <h2>Counting down to forever</h2>
           <p>Every second brings us closer to the celebration.</p>
         </div>
@@ -927,7 +981,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Our story</p>
           <h2>Two families, one celebration</h2>
-          <p>A gentle narrative section that gives the invitation more emotional scale.</p>
+          <p>Designed like a ceremonial timeline with room for meaning and memory.</p>
         </div>
 
         <div class="story__timeline">
@@ -990,7 +1044,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">The celebration</p>
           <h2>Two days, two venues</h2>
-          <p>Clear event information, designed to be easy to scan on mobile and luxurious on desktop.</p>
+          <p>Clear event details with space for the heritage feel to breathe.</p>
         </div>
 
         <div class="events__grid">
@@ -1032,7 +1086,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Travel &amp; stay</p>
           <h2>Guest guidance</h2>
-          <p>Wedding websites are more useful when they include travel, stay, and practical guest info [web:24][web:27][web:54].</p>
+          <p>Practical sections help guests arrive relaxed and prepared [web:18][web:24][web:54].</p>
         </div>
 
         <div class="travel__grid">
@@ -1061,7 +1115,7 @@
           <div class="info-card reveal">
             <p class="eyebrow">Dress code</p>
             <h3>What to wear</h3>
-            <p>Clear dress guidance helps guests feel prepared and reduces uncertainty [web:33][web:34][web:52].</p>
+            <p>Clear dress guidance helps guests feel prepared and reduces uncertainty [web:33][web:52].</p>
             <ul>
               <li>Engagement: festive elegant.</li>
               <li>Wedding: traditional formal.</li>
@@ -1077,7 +1131,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Moments</p>
           <h2>A larger gallery space</h2>
-          <p>Swap these blocks for your own photographs or use them as a styled mosaic.</p>
+          <p>Replace these placeholders with your own photographs.</p>
         </div>
 
         <div class="gallery__grid reveal">
@@ -1091,12 +1145,25 @@
       </div>
     </section>
 
+    <section class="section blessings">
+      <div class="wrap">
+        <div class="blessings__panel reveal">
+          <p class="eyebrow">Blessings</p>
+          <h3>With love and gratitude</h3>
+          <p>
+            We invite your blessings, presence, and good wishes as we begin this new chapter together.
+            This section is ideal for adding a note about gifts, family blessings, or a short heartfelt message.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="section faq">
       <div class="wrap">
         <div class="section-head reveal">
           <p class="eyebrow">FAQ</p>
           <h2>Helpful answers</h2>
-          <p>A wedding website FAQ helps reduce back-and-forth and makes the invite more guest-friendly [web:33][web:52][web:55].</p>
+          <p>FAQ sections are one of the most useful parts of a wedding website [web:33][web:52][web:55].</p>
         </div>
 
         <div class="faq__grid">
@@ -1123,20 +1190,20 @@
     <section class="section rsvp" id="rsvp">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow" style="color:var(--gold-2)">Kindly respond</p>
+          <p class="eyebrow" style="color:var(--gold-3)">Kindly respond</p>
           <h2>RSVP</h2>
-          <p>A larger RSVP section gives the invitation a more complete and premium finish.</p>
+          <p>A larger RSVP section makes the invitation feel complete and professional.</p>
         </div>
 
         <div class="rsvp__layout">
           <div class="rsvp__panel reveal">
-            <p class="eyebrow" style="color:var(--gold-2)">Your reply matters</p>
+            <p class="eyebrow" style="color:var(--gold-3)">Your reply matters</p>
             <h3>We’d love to celebrate with you</h3>
             <p>
               Please let us know which day or days you’ll attend, along with any notes that can help us host you better.
             </p>
             <p>
-              If you want, you can also mention dietary preferences, arrival timing, or any special assistance needed.
+              You can also mention dietary preferences, arrival timing, or any special assistance needed.
             </p>
           </div>
 
@@ -1204,7 +1271,7 @@
     setTimeout(function(){
       gate.classList.add('is-entered');
       body.classList.remove('locked');
-    }, reduceMotion ? 150 : 1500);
+    }, reduceMotion ? 150 : 1600);
   }
 
   seal.addEventListener('click', openDoors);
