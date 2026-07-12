@@ -18,6 +18,9 @@
     --olive:#5A6842;
     --olive-2:#384428;
     --olive-3:#7A8A5A;
+    --green:#2D5F3F;
+    --green-light:#4A8B5C;
+    --green-dark:#1a3a27;
     --gold:#A88747;
     --gold-2:#D8C391;
     --gold-3:#E9D9B0;
@@ -131,6 +134,8 @@
     background:
       radial-gradient(circle at 50% 20%, rgba(255,255,255,.05), transparent 30%),
       linear-gradient(165deg, rgba(39,45,25,.98), rgba(18,22,11,.99));
+    width:100vw;
+    height:100vh;
   }
   .gate.is-entered{opacity:0;visibility:hidden;pointer-events:none}
   .gate__overlay{
@@ -144,8 +149,12 @@
   .gate__wrap{
     position:relative;
     z-index:2;
-    width:min(96vw, 1000px);
-    text-align:center;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
     padding:24px 0;
   }
   .gate__title{
@@ -175,6 +184,29 @@
     padding-bottom:3px;
   }
 
+  .ganesh-container{
+    position:relative;
+    z-index:3;
+    margin-bottom:30px;
+    animation:float 3s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+  }
+  .ganesh-icon{
+    width:120px;
+    height:120px;
+    background:radial-gradient(circle at 35% 30%, #E1CD99, var(--gold) 45%, #6F5627 100%);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--green-dark);
+    font-family:var(--serif);
+    font-size:4rem;
+    box-shadow:0 14px 28px rgba(0,0,0,.46), inset 0 2px 6px rgba(255,255,255,.32);
+  }
+
   .door-scene{
     position:relative;
     width:min(1000px, 96vw);
@@ -188,8 +220,8 @@
     width:50%;
     height:100%;
     background:
-      radial-gradient(circle at 50% 18%, rgba(255,255,255,.34), transparent 22%),
-      linear-gradient(180deg, #FFF9EE 0%, #F1E5CB 100%);
+      radial-gradient(circle at 50% 18%, rgba(255,255,255,.24), transparent 22%),
+      linear-gradient(180deg, #4A8B5C 0%, #2D5F3F 100%);
     border:1px solid rgba(168,135,71,.72);
     box-shadow:0 24px 70px rgba(0,0,0,.34);
     overflow:hidden;
@@ -240,7 +272,7 @@
     font-size:.58rem;
     letter-spacing:.24em;
     text-transform:uppercase;
-    color:var(--olive-2);
+    color:var(--gold-3);
     margin-bottom:12px;
   }
   .door__name{
@@ -249,7 +281,7 @@
     font-style:italic;
     font-size:clamp(2rem,6vw,3.25rem);
     line-height:1.02;
-    color:var(--olive-2);
+    color:var(--ivory);
   }
   .door__date{
     display:block;
@@ -257,7 +289,16 @@
     font-size:.62rem;
     text-transform:uppercase;
     letter-spacing:.2em;
-    color:var(--gold);
+    color:var(--gold-3);
+  }
+  .door__sloka{
+    display:block;
+    margin-top:20px;
+    font-family:var(--serif);
+    font-size:.75rem;
+    color:var(--gold-3);
+    font-style:italic;
+    line-height:1.6;
   }
   .seal{
     position:absolute;
@@ -270,7 +311,7 @@
     border-radius:58% 42% 56% 44% / 45% 56% 44% 55%;
     background:
       radial-gradient(circle at 35% 30%, #E1CD99, var(--gold) 45%, #6F5627 100%);
-    color:var(--olive-2);
+    color:var(--green-dark);
     font-family:var(--serif-sc);
     font-size:1.4rem;
     display:grid;
@@ -858,6 +899,10 @@
   <div class="gate" id="gate" aria-hidden="true">
     <div class="gate__overlay"></div>
     <div class="gate__wrap">
+      <div class="ganesh-container">
+        <div class="ganesh-icon">🙏</div>
+      </div>
+
       <p class="gate__title">You are cordially invited</p>
 
       <div class="door-scene">
@@ -866,6 +911,7 @@
             <span class="door__eyebrow">The engagement &amp; wedding of</span>
             <span class="door__name">Tanuj</span>
             <span class="door__date">10 December</span>
+            <span class="door__sloka">समर्पणं भवतु</span>
           </div>
         </div>
         <div class="door door--right">
@@ -873,6 +919,7 @@
             <span class="door__eyebrow">&amp;</span>
             <span class="door__name">Prachi</span>
             <span class="door__date">11 December</span>
+            <span class="door__sloka">सर्वमंगलमांगल्ये</span>
           </div>
         </div>
         <button class="seal" id="seal" type="button" aria-label="Open invitation">T&amp;P</button>
@@ -914,7 +961,7 @@
         <p class="eyebrow reveal">Together with their families</p>
         <h1 class="hero__title reveal">Tanuj <span class="hero__amp">&amp;</span> Prachi</h1>
         <p class="hero__subtitle reveal">
-          A heritage wedding invitation inspired by Indian elegance — designed to feel grand, warm, ceremonial, and easy for guests to use.
+          A celebration of love, tradition, and family—joining two souls in sacred matrimony.
         </p>
 
         <div class="hero__meta reveal">
@@ -937,22 +984,22 @@
         <div class="intro__grid">
           <div class="intro__copy reveal">
             <p class="eyebrow">The invitation</p>
-            <h2>Royal, immersive, and rooted in Indian heritage</h2>
+            <h2>A celebration rooted in tradition</h2>
             <p>
-              This design is meant to feel like a premium wedding invitation for real guests: full-screen opening,
-              elegant motion, rich ornament, and clear event details.
+              This invitation reflects the sacred union of two families through Indian heritage and timeless elegance.
+              With reverence to our roots and clarity for our guests, every detail has been thoughtfully crafted.
             </p>
             <p>
-              It brings together tradition and usability so the invitation feels beautiful while still answering the questions
-              guests actually need answered.
+              From the opening doors to the ceremonial details, this celebrates not just a wedding, but the beginning
+              of a beautiful chapter blessed by tradition and family.
             </p>
           </div>
 
           <aside class="intro__panel reveal">
             <p class="eyebrow">At a glance</p>
-            <div class="intro__big">Two celebrations.<br>One sacred beginning.<br>Designed to feel grand.</div>
+            <div class="intro__big">Two celebrations.<br>One sacred beginning.<br>Blessed by tradition.</div>
             <p class="intro__small">
-              The opening is now edge-to-edge, with a stronger Indian visual language and a more ceremonial reveal.
+              An immersive opening honoring our heritage, with Sanskrit blessings and the presence of Ganesh Ji guiding our union.
             </p>
           </aside>
         </div>
@@ -964,7 +1011,7 @@
         <div class="section-head reveal">
           <p class="eyebrow" style="color:var(--gold-3)">Save the date</p>
           <h2>Counting down to forever</h2>
-          <p>Every second brings us closer to the celebration.</p>
+          <p>Every moment brings us closer to the celebration.</p>
         </div>
 
         <div class="countdown__grid reveal" id="countdown">
@@ -981,7 +1028,7 @@
         <div class="section-head reveal">
           <p class="eyebrow">Our story</p>
           <h2>Two families, one celebration</h2>
-          <p>Designed like a ceremonial timeline with room for meaning and memory.</p>
+          <p>A ceremonial timeline marking the journey of two souls joining in matrimony.</p>
         </div>
 
         <div class="story__timeline">
@@ -1005,16 +1052,15 @@
           <div class="story__item reveal">
             <div class="story__dot">II</div>
             <div class="story__card">
-              <p class="eyebrow">The moment</p>
-              <h3>An unforgettable yes</h3>
+              <p class="eyebrow">A promise</p>
+              <h3>The engagement</h3>
               <p>
-                On a special evening, with hope and joy in our hearts, we began a new chapter together.
-                Our families celebrate this beginning as much as we do.
+                Before family and loved ones, we pledge our commitment to each other. This moment marks
+                the formal beginning of our journey toward matrimony.
               </p>
               <div class="story__meta">
-                <span>Joy</span>
-                <span>Hope</span>
-                <span>Promise</span>
+                <span>December 10</span>
+                <span>Sonipat</span>
               </div>
             </div>
           </div>
@@ -1022,16 +1068,15 @@
           <div class="story__item reveal">
             <div class="story__dot">III</div>
             <div class="story__card">
-              <p class="eyebrow">What's next</p>
-              <h3>A lifetime together</h3>
+              <p class="eyebrow">Sacred union</p>
+              <h3>The wedding</h3>
               <p>
-                Now we invite you to celebrate with us — two ceremonies, one sacred beginning, and the start
-                of a journey filled with love, laughter, and cherished memories.
+                In the presence of Ganesh Ji and blessed by our families, two souls become one. This is the
+                culmination of love, respect, and the sacred vows we make to each other.
               </p>
               <div class="story__meta">
-                <span>Forever</span>
-                <span>Community</span>
-                <span>Celebration</span>
+                <span>December 11</span>
+                <span>Sonipat</span>
               </div>
             </div>
           </div>
@@ -1042,37 +1087,35 @@
     <section class="section events" id="events">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow">The itinerary</p>
-          <h2>Two celebrations over two days</h2>
-          <p>Mark your calendars and join us for both events.</p>
+          <p class="eyebrow">The celebrations</p>
+          <h2>Two days of sacred moments</h2>
+          <p>Join us for the engagement and wedding ceremonies.</p>
         </div>
 
         <div class="events__grid">
           <div class="event reveal">
-            <div class="event__day">Saturday, 10 December 2026</div>
+            <div class="event__day">December 10</div>
             <h3>Engagement Ceremony</h3>
             <div class="event__details">
-              <div><strong>Time:</strong> 6:00 PM – 10:00 PM</div>
-              <div><strong>Venue:</strong> Apeejay Banquet, Sonipat</div>
-              <div><strong>Dress Code:</strong> Semi-formal ethnic</div>
-              <div><strong>Reception:</strong> Dinner and celebration</div>
+              <div><strong>Date:</strong> 10 December 2026</div>
+              <div><strong>Time:</strong> To be announced</div>
+              <div><strong>Venue:</strong> Sonipat, Haryana</div>
             </div>
             <div class="event__actions">
-              <button class="btn btn--ghost">Save to calendar</button>
+              <a class="btn" href="#rsvp">RSVP</a>
             </div>
           </div>
 
           <div class="event reveal">
-            <div class="event__day">Sunday, 11 December 2026</div>
+            <div class="event__day">December 11</div>
             <h3>Wedding Ceremony</h3>
             <div class="event__details">
-              <div><strong>Time:</strong> 8:00 AM – 12:00 PM</div>
-              <div><strong>Venue:</strong> Apeejay Banquet, Sonipat</div>
-              <div><strong>Dress Code:</strong> Formal ethnic</div>
-              <div><strong>Reception:</strong> Breakfast and celebrations</div>
+              <div><strong>Date:</strong> 11 December 2026</div>
+              <div><strong>Time:</strong> To be announced</div>
+              <div><strong>Venue:</strong> Sonipat, Haryana</div>
             </div>
             <div class="event__actions">
-              <button class="btn btn--ghost">Save to calendar</button>
+              <a class="btn" href="#rsvp">RSVP</a>
             </div>
           </div>
         </div>
@@ -1082,68 +1125,40 @@
     <section class="section travel">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow">Getting there</p>
-          <h2>Travel information</h2>
-          <p>Everything you need to know to join us in Sonipat.</p>
+          <p class="eyebrow">Travel & accommodation</p>
+          <h2>Getting here & staying comfortable</h2>
+          <p>Everything you need to know about reaching Sonipat.</p>
         </div>
 
         <div class="travel__grid">
           <div class="info-card reveal">
-            <p class="eyebrow">By air</p>
-            <h3>Flight</h3>
-            <p>Indira Gandhi International Airport (IGI) is the nearest airport, approximately 60 km from Sonipat.</p>
+            <p class="eyebrow">By Air</p>
+            <h3>Nearest Airport</h3>
+            <p>Indira Gandhi International Airport, Delhi (IGI) is approximately 45 km away.</p>
             <ul>
-              <li>Drive time: ~90 minutes</li>
-              <li>Taxis and car rentals available</li>
-              <li>We recommend pre-booking transport</li>
+              <li>Direct flights available</li>
+              <li>Taxi and cab services</li>
             </ul>
           </div>
 
           <div class="info-card reveal">
-            <p class="eyebrow">By road</p>
-            <h3>Driving</h3>
-            <p>Sonipat is well-connected via National Highway 1, about 45 km north of Delhi.</p>
+            <p class="eyebrow">By Rail</p>
+            <h3>Train Services</h3>
+            <p>Sonipat has good railway connectivity to major cities.</p>
             <ul>
-              <li>Drive time: ~1 hour from central Delhi</li>
-              <li>Ample parking available at venue</li>
-              <li>GPS coordinates provided upon request</li>
+              <li>Regular trains from Delhi</li>
+              <li>Local transport available</li>
             </ul>
           </div>
 
           <div class="info-card reveal">
-            <p class="eyebrow">By train</p>
-            <h3>Railways</h3>
-            <p>Sonipat Railway Station connects to major Indian cities and is within walking distance of the venue.</p>
+            <p class="eyebrow">Accommodation</p>
+            <h3>Where to Stay</h3>
+            <p>Several hotels and guest accommodations available in Sonipat.</p>
             <ul>
-              <li>Multiple daily trains from Delhi</li>
-              <li>Local taxis available from station</li>
-              <li>Journey time from Delhi: ~40 minutes</li>
+              <li>Comfortable lodging options</li>
+              <li>Venue recommendations</li>
             </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section gallery">
-      <div class="wrap">
-        <div class="gallery__grid">
-          <div class="gallery__item reveal">
-            <p>Engagement<br>Celebrations</p>
-          </div>
-          <div class="gallery__item reveal">
-            <p>Moments of<br>Joy & Love</p>
-          </div>
-          <div class="gallery__item reveal">
-            <p>First Meeting</p>
-          </div>
-          <div class="gallery__item reveal">
-            <p>The Proposal</p>
-          </div>
-          <div class="gallery__item reveal">
-            <p>Family Time</p>
-          </div>
-          <div class="gallery__item reveal">
-            <p>Our Journey Together</p>
           </div>
         </div>
       </div>
@@ -1151,13 +1166,50 @@
 
     <section class="section blessings">
       <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Blessings & Traditions</p>
+        </div>
+
         <div class="blessings__panel reveal">
-          <p class="eyebrow">Blessings</p>
-          <h3>Your love and support mean everything to us</h3>
-          <p>
-            We are grateful for every person who has been part of our journey. Your presence and blessings
-            will make our celebrations truly special. We look forward to sharing this joyous occasion with you.
+          <p class="eyebrow">Sanskrit Slokas</p>
+          <h3>आशीर्वाद</h3>
+          <p style="font-family:var(--serif);font-style:italic;margin-top:18px">
+            "समरसे सर्वे भवन्तु। सुखिनः सन्तु।"<br>
+            "May all be happy, may all be prosperous, may all be free from suffering."
           </p>
+          <p style="margin-top:18px;color:var(--muted)">
+            This union is blessed by our families, guided by the divine, and rooted in the values of love, respect, and tradition.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Moments</p>
+          <h2>Memories in the making</h2>
+        </div>
+
+        <div class="gallery__grid">
+          <div class="gallery__item reveal">
+            <p>Your cherished moment here</p>
+          </div>
+          <div class="gallery__item reveal">
+            <p>Engagement ceremony</p>
+          </div>
+          <div class="gallery__item reveal">
+            <p>Family gathering</p>
+          </div>
+          <div class="gallery__item reveal">
+            <p>Celebrations</p>
+          </div>
+          <div class="gallery__item reveal">
+            <p>Dancing & joy</p>
+          </div>
+          <div class="gallery__item reveal">
+            <p>Your special memories</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1165,58 +1217,29 @@
     <section class="section faq">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow">Common questions</p>
-          <h2>FAQ</h2>
-          <p>Everything you might want to know.</p>
+          <p class="eyebrow">Frequently Asked</p>
+          <h2>Common Questions</h2>
         </div>
 
         <div class="faq__grid">
           <div class="faq__item reveal">
-            <h3>What should I wear?</h3>
-            <p>
-              For the engagement, semi-formal ethnic attire is suggested. For the wedding, formal ethnic wear is recommended.
-              Traditional Indian clothing is perfect for both occasions.
-            </p>
+            <h3>What is the dress code?</h3>
+            <p>Traditional Indian attire is preferred. Details will be shared with confirmed guests.</p>
           </div>
 
           <div class="faq__item reveal">
-            <h3>Can I bring my children?</h3>
-            <p>
-              Yes! Children are very welcome at both events. Please let us know in your RSVP if you'll be bringing children
-              so we can make appropriate arrangements.
-            </p>
+            <h3>Can I bring a plus one?</h3>
+            <p>Please indicate this in your RSVP. We'll confirm based on our arrangements.</p>
           </div>
 
           <div class="faq__item reveal">
-            <h3>Is accommodation provided?</h3>
-            <p>
-              We are arranging special rates at nearby hotels for our out-of-town guests. Details will be shared via email
-              shortly after your RSVP.
-            </p>
+            <h3>Is there parking available?</h3>
+            <p>Yes, adequate parking will be available at the venue for all guests.</p>
           </div>
 
           <div class="faq__item reveal">
-            <h3>What if I have dietary restrictions?</h3>
-            <p>
-              Please mention any dietary preferences or restrictions in the RSVP form. We'll ensure special arrangements
-              are made for all our guests.
-            </p>
-          </div>
-
-          <div class="faq__item reveal">
-            <h3>Can I bring a plus-one?</h3>
-            <p>
-              We'd love to have your family and close friends! Please let us know the number of guests you'll be bringing
-              in your RSVP so we can plan accordingly.
-            </p>
-          </div>
-
-          <div class="faq__item reveal">
-            <h3>What time should I arrive?</h3>
-            <p>
-              Please arrive 15–30 minutes before the start time. Parking is available on-site, and our team will be there
-              to welcome you warmly.
-            </p>
+            <h3>Will there be vegetarian options?</h3>
+            <p>Yes, we cater to all dietary preferences. Please mention in your RSVP.</p>
           </div>
         </div>
       </div>
@@ -1225,87 +1248,72 @@
     <section class="section rsvp" id="rsvp">
       <div class="wrap">
         <div class="section-head reveal">
-          <p class="eyebrow">Join the celebration</p>
-          <h2>RSVP</h2>
-          <p>Confirm your attendance so we can plan accordingly.</p>
+          <p class="eyebrow">Confirm your presence</p>
+          <h2>We would love to celebrate with you</h2>
+          <p>Please RSVP by December 1st, 2026.</p>
         </div>
 
-        <div class="rsvp__layout">
-          <div class="rsvp__panel reveal">
-            <p class="eyebrow">We'd love to see you</p>
-            <h3>Help us celebrate</h3>
+        <div class="rsvp__layout reveal">
+          <div class="rsvp__panel">
+            <p class="eyebrow">Contact</p>
+            <h3>Get in touch</h3>
             <p>
-              Please fill out the RSVP form to confirm your attendance. Let us know which events you'll be joining
-              and any dietary requirements.
+              For any queries regarding the celebration, please don't hesitate to reach out.
+              We're here to make your celebration comfortable and memorable.
+            </p>
+            <p style="margin-top:18px">
+              <strong style="color:var(--gold-3)">Phone:</strong> +91 XXXXX XXXXX<br>
+              <strong style="color:var(--gold-3)">Email:</strong> contact@example.com
             </p>
           </div>
 
-          <form class="rsvp__panel rsvp__form reveal" id="rsvpForm">
+          <form class="rsvp__panel rsvp__form" id="rsvpForm">
             <div class="field">
               <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" required>
+              <input type="text" id="name" name="name" required placeholder="Your name">
             </div>
 
             <div class="field">
               <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
             </div>
 
             <div class="field">
-              <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" required>
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
             </div>
 
             <div class="field">
-              <label for="attendees">Number of Guests *</label>
-              <select id="attendees" name="attendees" required>
-                <option value="">Select number of guests</option>
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="5">5+ Guests</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="engagement">Engagement (10 Dec) *</label>
-              <select id="engagement" name="engagement" required>
-                <option value="">Will you attend?</option>
-                <option value="yes">Yes, I'll be there</option>
-                <option value="no">No, I can't make it</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="wedding">Wedding (11 Dec) *</label>
-              <select id="wedding" name="wedding" required>
-                <option value="">Will you attend?</option>
-                <option value="yes">Yes, I'll be there</option>
-                <option value="no">No, I can't make it</option>
+              <label for="guests">Number of guests *</label>
+              <select id="guests" name="guests" required>
+                <option value="">Select...</option>
+                <option value="1">1 guest</option>
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4+ guests</option>
               </select>
             </div>
 
             <div class="field field--full">
-              <label for="dietary">Dietary Restrictions (if any)</label>
-              <textarea id="dietary" name="dietary" placeholder="Let us know about any dietary preferences..."></textarea>
+              <label for="dietary">Dietary preferences</label>
+              <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, vegan, etc.">
             </div>
 
             <div class="field field--full">
-              <label for="message">Special Message (optional)</label>
-              <textarea id="message" name="message" placeholder="Share your wishes and blessings..."></textarea>
+              <label for="message">Message for the couple</label>
+              <textarea id="message" name="message" placeholder="Your warm wishes..."></textarea>
             </div>
 
             <div class="rsvp__submit">
               <button type="submit" class="btn">Submit RSVP</button>
             </div>
 
-            <div class="rsvp__success" id="successMsg">
-              ✓ Thank you! We've received your RSVP. We can't wait to celebrate with you!
+            <div class="rsvp__note">
+              By submitting this form, you confirm your attendance at the celebration.
             </div>
 
-            <div class="rsvp__note">
-              * Required fields. We promise to keep your information confidential.
+            <div class="rsvp__success" id="rsvpSuccess">
+              Thank you! Your RSVP has been received. We look forward to celebrating with you.
             </div>
           </form>
         </div>
@@ -1314,13 +1322,32 @@
   </main>
 
   <footer class="footer">
-    <div class="footer__mono">Tanuj <span class="hero__amp">&amp;</span> Prachi</div>
-    <div class="footer__note">10 — 11 December 2026 · Sonipat, Haryana</div>
-    <div class="footer__credit">Together with our families, we invite you to celebrate our love and commitment</div>
+    <p class="footer__mono">With gratitude & blessings</p>
+    <p class="footer__note">Tanuj & Prachi</p>
+    <p class="footer__credit">Crafted with love • December 2026</p>
   </footer>
 
   <script>
-    // Intersection observer for reveals
+    const gate = document.getElementById('gate');
+    const seal = document.getElementById('seal');
+    const skipGate = document.getElementById('skipGate');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const rsvpSuccess = document.getElementById('rsvpSuccess');
+
+    seal.addEventListener('click', () => {
+      gate.classList.add('is-open');
+      setTimeout(() => {
+        gate.classList.add('is-entered');
+        document.body.classList.remove('locked');
+      }, 900);
+    });
+
+    skipGate.addEventListener('click', (e) => {
+      e.preventDefault();
+      gate.classList.add('is-entered');
+      document.body.classList.remove('locked');
+    });
+
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -1330,98 +1357,46 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
 
-    // Countdown timer
-    const countdownDate = new Date('December 10, 2026 18:00:00').getTime();
-
-    function updateCountdown() {
+    // Countdown
+    const countdownDate = new Date('December 10, 2026').getTime();
+    const countdown = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
-      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // RSVP form handling
-    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const successMsg = document.getElementById('successMsg');
-      
-      // Simulate form submission
-      form.style.opacity = '0.5';
-      form.style.pointerEvents = 'none';
-      successMsg.style.display = 'grid';
-      
-      setTimeout(() => {
-        form.reset();
-        form.style.opacity = '1';
-        form.style.pointerEvents = 'auto';
-        successMsg.style.display = 'none';
-      }, 3000);
-    });
-
-    // Gate animation
-    const gate = document.getElementById('gate');
-    const seal = document.getElementById('seal');
-    const skip = document.getElementById('skipGate');
-    const body = document.body;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function enterInvitation(immediate = false) {
-      if (!gate) return;
-      gate.classList.add('is-open');
-
-      if (prefersReduced || immediate) {
-        gate.classList.add('is-entered');
-        body.classList.remove('locked');
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById('countdown').innerHTML = '<div style="grid-column:1/-1;text-align:center;font-size:1.5rem;color:var(--gold-3)">The celebration is here!</div>';
         return;
       }
 
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(seconds).padStart(2, '0');
+    }, 1000);
+
+    // RSVP Form
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      rsvpSuccess.style.display = 'block';
       setTimeout(() => {
-        gate.classList.add('is-entered');
-        body.classList.remove('locked');
-      }, 850);
-    }
-
-    if (seal) {
-      seal.addEventListener('click', () => enterInvitation(false));
-      seal.addEventListener('keydown', (ev) => {
-        if (ev.key === 'Enter' || ev.key === ' ') {
-          ev.preventDefault();
-          enterInvitation(false);
-        }
-      });
-      seal.setAttribute('tabindex', '0');
-    }
-
-    if (skip) {
-      skip.addEventListener('click', (ev) => {
-        ev.preventDefault();
-        enterInvitation(true);
-      });
-    }
-
-    if (location.hash === '#hero') {
-      setTimeout(() => enterInvitation(true), 80);
-    }
+        rsvpForm.reset();
+        rsvpSuccess.style.display = 'none';
+      }, 3000);
+    });
   </script>
-
 </body>
 </html>
